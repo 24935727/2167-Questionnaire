@@ -1,5 +1,5 @@
 <?php 
 $I = new AcceptanceTester($scenario);
-$I->wantTo('ensure that Laravel works');
+$I->wantTo('perform actions and see result');
 $I->amOnPage('/');
-$I->see('Laravel');
+$I->see('Questionnaire');
