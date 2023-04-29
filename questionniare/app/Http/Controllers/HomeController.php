@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Questionnaire;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userID = Auth::user()->id;
+        $questionnaires = Questionnaire::Where('user_id', $userID)->get();
+        return view('home', compact('questionnaires'));
     }
 }

@@ -22,3 +22,12 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/questionnaire/create', 'QuestionnaireController@create');
 Route::post('/questionnaires', 'QuestionnaireController@store');
 Route::get('/questionnaires/{questionnaire}', 'QuestionnaireController@show');
+Route::patch('questionnaires/status/{questionnaire}', 'QuestionnaireController@update');
+
+Route::get('/questionnaires/{questionnaire}/questions/create', 'QuestionController@create')->name('questions.create');
+Route::post('/questionnaires/{questionnaire}/questions', 'QuestionController@store');
+
+Route::get('/questionnaires/{questionnaire}/responses/create', 'ResponseController@create')->name('responses.create');
+Route::get('/questionnaires/responses/show', 'ResponseController@show')->name('responses.show');
+Route::post('/questionnaires/{questionnaire}/response', 'ResponseController@store');
+Route::delete('responders/{responder}', 'ResponseController@destroy')->name('responders.destroy');

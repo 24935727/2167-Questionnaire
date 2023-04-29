@@ -103,9 +103,8 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <?php echo e(__('Register')); ?>
-
+                                <button type="submit" name="register_button" class="btn btn-primary">
+                                    Submit
                                 </button>
                             </div>
                         </div>

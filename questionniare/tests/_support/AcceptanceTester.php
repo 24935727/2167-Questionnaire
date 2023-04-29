@@ -26,25 +26,7 @@ class AcceptanceTester extends \Codeception\Actor
     public function login()
 
     {
-    
-         // if snapshot exists - skipping login
-    
-         if ($I->loadSessionSnapshot('login')) return;
-    
-          // logging in
-    
-         $I->amOnPage('/login');
-    
-         $I->fillField('email', 'test@test.com');
-    
-         $I->fillField('password', 'tester12');
-    
-         $I->click('Login');
-    
-          // saving snapshot
-    
-         $I->saveSessionSnapshot('login');
-    
+
     }
 
 }
