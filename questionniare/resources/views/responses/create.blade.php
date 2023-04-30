@@ -8,7 +8,7 @@
         <div class="form-group">
             @if($question->type === 'open')
                 {!! Form::label("oe_response[$i][response]", $question->question, ['class' => 'form-label', ]) !!}
-                {!! Form::text("oe_response[$i][response]", null, ['class' => 'form-control', 'id' => "openResponse_$i"]) !!} 
+                {!! Form::text("oe_response[$i][response]", null, ['class' => 'form-control', 'id' => "open_response_$i"]) !!} 
                 {!! Form::hidden("oe_response[$i][question_id]", $question->id) !!}
             @else
                 {!! Form::label("responses[$i][choice_id]", $question->question, ['class' => 'form-label']) !!}
@@ -16,7 +16,7 @@
                     @foreach($question->choices as $i => $choice)
                         <li>
                             <div class="form-check">
-                                {!! Form::radio("mc_responses[$question->id][choice_id]", $choice->id, null, ['class' => 'form-check-input', 'id' => "choice_$i"]) !!}
+                                {!! Form::radio("mc_responses[$question->id][choice_id]", $choice->id, null, ['class' => 'form-check-input', 'id' => "choice_$choice->id"]) !!}
                                 {!! Form::label("mc_responses[$question->id][choice_id]", $choice->choice, ['class' => 'form-check-label']) !!}
                             </div>
                         </li>

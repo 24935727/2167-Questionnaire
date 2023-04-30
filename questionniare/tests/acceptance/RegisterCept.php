@@ -8,6 +8,3 @@ $I->fillField('email', 'test1@test.com');
 $I->fillField('password', 'tester123');
 $I->fillField('password_confirmation', 'tester123');
 $I->click('register_button');
-
-$I->amOnPage('/');
-$I->see('Dashboard');

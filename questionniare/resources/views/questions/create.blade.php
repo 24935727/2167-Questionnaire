@@ -12,7 +12,7 @@
 <button id="multiChoice" class="btn btn-primary text-white">Create a multiple choice question</button>
 <button id="open" class="btn btn-primary text-white">Create a text question</button>
 <a href="/questionnaires/{{$questionnaire->id}}" class="btn btn-primary text-white">Back to questionnaire</a></button>
-<button id="choice" class="hidden">Add Choice</button>
+<button id="choice" class="hidden btn-primary text-white ml-2">Add Choice</button>
 
 
 <script src="{{ asset('js/main.js') }}"></script>
