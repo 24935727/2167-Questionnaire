@@ -9,5 +9,5 @@ $I->fillField('password', 'tester123');
 $I->fillField('password_confirmation', 'tester123');
 $I->click('register_button');
 
-// $I->amOnPage('/');
+$I->amOnPage('/');
 $I->see('Dashboard');

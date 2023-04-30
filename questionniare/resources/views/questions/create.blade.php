@@ -2,7 +2,7 @@
 @section('title', $questionnaire->title)
 
 @section('content')
-{!!Form::open(['url' => "/questionnaires/$questionnaire->id/questions"])!!}
+{!! Form::open(['route' => ['questions.store', 'questionnaire' => $questionnaire->id]])!!}
 <fieldset id="fieldset"></fieldset>
 <div id="questions"></div>
     {!!Form::hidden('questionnaire_id', $questionnaire->id) !!}

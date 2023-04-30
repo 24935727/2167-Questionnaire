@@ -38,6 +38,7 @@ class ResponseController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         
         $data = request()->validate([
             'mc_responses.*.choice_id' => 'required',
@@ -48,7 +49,7 @@ class ResponseController extends Controller
             'responder.email' => 'required|email',
             'questionnaire_id' => 'required',
         ]);
-    
+        
         $responder = Responder::create([
             'name' => $data['responder']['name'],
             'email' => $data['responder']['email'],

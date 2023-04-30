@@ -16,13 +16,14 @@
                     @foreach($question->choices as $i => $choice)
                         <li>
                             <div class="form-check">
-                                {!! Form::radio("mc_responses[$i][choice_id]", $choice->id, null, ['class' => 'form-check-input', 'id' => "choice_$i"]) !!}
-                                {!! Form::label("mc_responses[$i][choice_id]", $choice->choice, ['class' => 'form-check-label']) !!}
+                                {!! Form::radio("mc_responses[$question->id][choice_id]", $choice->id, null, ['class' => 'form-check-input', 'id' => "choice_$i"]) !!}
+                                {!! Form::label("mc_responses[$question->id][choice_id]", $choice->choice, ['class' => 'form-check-label']) !!}
                             </div>
                         </li>
                     @endforeach
+                    
                 </ul>
-                {!! Form::hidden("mc_responses[$i][question_id]", $question->id) !!}
+                {!! Form::hidden("mc_responses[$question->id][question_id]", $question->id) !!}
                 @error('responses.' . $i . 'choice_id')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -44,7 +45,7 @@
         {!!Form::hidden('questionnaire_id', $questionnaire->id) !!}
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
     </div>
-    @if($questionnaire->ethics_statement === 'Yes')
+    @if(strtolower($questionnaire->ethics_statement) === 'yes')
     <p>All responses will be kept confidential and will only be used for research purposes. Your name will not be included in any reports or publications resulting from this study, and we will take every measure to ensure that your privacy is protected.
 
 Participation in this study is voluntary, and you may withdraw at any time. There are no known risks or benefits to participating in this study.

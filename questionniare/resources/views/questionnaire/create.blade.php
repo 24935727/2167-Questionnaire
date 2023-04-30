@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
-{!!Form::open(['url' => '/questionnaires'])!!}
+{!!Form::open(['route' => 'questionnaire.store'])!!}
 <div class="form-group">
     {!!Form::label('title', 'Title:')!!}
     {!!Form::text('title', null, ['class' => 'form-control', 'id' => 'title'])!!}
