@@ -29,7 +29,8 @@ class QuestionnaireController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
+        // Returns the questionnaire create view
         return view('questionnaire.create');
     }
 
@@ -41,14 +42,15 @@ class QuestionnaireController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // Recieves and validates the data sent through the form  
+
         $data = request()->validate([
             'title' => 'required|max:50',
             'ethics_statement' => 'required',
             'status' => 'required',
             'user_id' => 'required'
         ]);
-        
+        // eloquent query to create a new entry to the questionnaire table
         $questionnaire = Questionnaire::create($data);
         return redirect()->route('questions.create', ['questionnaire' => $questionnaire->id]);
     }
@@ -61,6 +63,7 @@ class QuestionnaireController extends Controller
      */
     public function show($id)
     {
+        // loads the show view with the information from the tables with the data from the correct responder id
         $questionnaire = Questionnaire::with(['questions', 'multiChoiceResponses', 'openResponses'])->findOrFail($id);
         $responders = Responder::where('questionnaire_id', $id)->get();
         return view('questionnaire.show', compact('questionnaire','responders'));
@@ -86,6 +89,7 @@ class QuestionnaireController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // updates the status of the entries that have the the correct questionnaire id 
         $questionnaire = Questionnaire::findOrFail($id);
 
         $questionnaire->update(['status' => $request->input('status')
