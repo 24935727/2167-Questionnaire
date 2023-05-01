@@ -38,7 +38,7 @@ class ResponseController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // Recieves and validates the data sent through the form  
         
         $data = request()->validate([
             'mc_responses.*.choice_id' => 'required',
@@ -49,15 +49,14 @@ class ResponseController extends Controller
             'responder.email' => 'required|email',
             'questionnaire_id' => 'required',
         ]);
-        
+        // Creates a responder entry through eloquent
         $responder = Responder::create([
             'name' => $data['responder']['name'],
             'email' => $data['responder']['email'],
             'questionnaire_id' => $data['questionnaire_id']
         ]);
-
+        // Foreach open ended response it creates an entry to the database with the data pulled from the $data
         foreach ($data['oe_response'] as $openResponse) {
-            // $question = Question::findOrFail($openResponse['question_id']);
             $Response = OpenResponse::create([
                 'response' => $openResponse['response'],
                 'questionnaire_id' => $data['questionnaire_id'],
@@ -65,6 +64,7 @@ class ResponseController extends Controller
                 'responder_id' => $responder->id,
             ]);
         }
+        // Does the same as above but for multiple choice entries
         foreach ($data['mc_responses'] as $mc_response) {
             $choiceResponse = MultiCHoiceResponse::create([
                 'choice_id' => $mc_response['choice_id'],
@@ -85,7 +85,7 @@ class ResponseController extends Controller
      */
     public function show(Questionnaire $questionnaire)
     {
-        
+        // Returns response show view with $questionnaire in the compact to the view
         return view('responses.show', compact('questionnaire'));
     }
 
@@ -120,6 +120,7 @@ class ResponseController extends Controller
      */
     public function destroy(Responder $responder)
     {
+        // Recieves the responder id and then finds it in the entry and deletes that row in the table
         $responder->delete();
         return redirect()->back();
     }
