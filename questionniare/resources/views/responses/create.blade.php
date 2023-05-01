@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('title', $questionnaire->title)
 @section('content')
+<!-- Check if the questionnaires status is live or in development mode -->
 @if($questionnaire->status === 'live')
 {!! Form::open(['url' => "questionnaires/{$questionnaire->id}/response", 'class' => 'form']) !!}
-
+    <!-- Creates a form that has the questions from the questionnaire -->
     @foreach($questionnaire->questions as $i => $question)
         <div class="form-group">
             @if($question->type === 'open')
@@ -30,7 +31,7 @@
             @endif
         </div>
     @endforeach 
-    
+    <!-- Recieve responder information -->
     <div class="form-group">
         {!! Form::label('responder[name]', 'Enter your Name: ', ['class' => 'form-label']) !!}
         {!! Form::text('responder[name]', null, ['class' => 'form-control', 'id' => "responder_name"]) !!}
@@ -45,6 +46,7 @@
         {!!Form::hidden('questionnaire_id', $questionnaire->id) !!}
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
     </div>
+    <!-- Checks if the questionnaire has an ethics statement -->
     @if(strtolower($questionnaire->ethics_statement) === 'yes')
     <p>All responses will be kept confidential and will only be used for research purposes. Your name will not be included in any reports or publications resulting from this study, and we will take every measure to ensure that your privacy is protected.
 
