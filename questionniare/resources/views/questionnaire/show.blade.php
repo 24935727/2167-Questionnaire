@@ -5,6 +5,7 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-8">
             <div class="card">
+                <!-- Form for updating the status of a questionnaire -->
                 <div class="card-header">{{$questionnaire->title}}</div>
                 {!! Form::model($questionnaire, ['method' => 'PATCH', 'url' =>
                 "questionnaires/status/$questionnaire->id"]) !!}
@@ -12,6 +13,7 @@
                 {{ Form::select('status', ['live' => 'Live', 'development' => 'Development'], null, ['class' => 'form-control']) }}
                 {!!Form::Submit('Change Mode', ['class' => 'btn btn-primary form-control'])!!}
                 {!!Form::close()!!}
+                <!-- Displaying each question with the responses and number of times a choice has been selected -->
                 <div class="card mt-4">
                     <div class="card-body">
                         @foreach ($questionnaire->questions as $question)

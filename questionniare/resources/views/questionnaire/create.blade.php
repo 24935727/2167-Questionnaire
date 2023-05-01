@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
+    <!-- Form for creating a questionnaire  -->
 {!!Form::open(['route' => 'questionnaire.store'])!!}
 <div class="form-group">
     {!!Form::label('title', 'Title:')!!}
